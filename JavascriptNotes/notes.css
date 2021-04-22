@@ -1,0 +1,31 @@
+body {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#div1 { 
+    flex: 1 1 40%;
+    width: fit-content;
+}
+#div2 {
+    /* margin:0 0 0 50%; */
+    float: right; 
+    border: solid 2px black;    
+    flex: 0 0 40%;
+    /* max-width: 40%; */
+}
+
+button {
+    display: inline;
+}
+
+.items {
+    border: solid 2px black;
+    background-color: green;
+    display: block;/*-block;*/
+
+}
+
+.del {
+    float: right;
+}

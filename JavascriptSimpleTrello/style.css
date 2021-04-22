@@ -1,0 +1,54 @@
+body {
+    background: rgb(255, 255, 255);
+    /* display: grid;
+    grid-template-columns: repeat(4,25%);
+    grid-template-rows: repeat(10,10%); */
+  }
+  
+  .fill {
+    background-color:rgb(43, 255, 0);
+    height: 50px;
+    width: 50%;
+    margin: 5px;
+    border-radius: 10%;
+    border: black 2px solid;
+
+  }
+  #item {
+    height: 10%;
+    width: 150px;
+  }
+
+  #category{
+    height: 90%;
+    width: 150px;
+  }
+    
+  #buckets {
+float: right;
+    
+  }
+
+  div[id*="bucket"]{
+    display: inline-block;
+    position:top;
+  }
+  .empty{
+    height: 600px;
+    width: 300px;
+    border: solid 3px rgb(4, 49, 248);
+    background: rgb(5, 176, 255);
+  }
+
+  #start{
+
+    height: auto;
+    width: 30%;
+  }
+  
+#createCategory{
+  /* grid-column: 0/4; */
+  grid-row:0/2;
+  height: 160px;
+  width: 160px;
+}

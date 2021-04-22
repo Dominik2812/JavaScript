@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Zentrale ScanfunKtion</title>
+        <link rel="stylesheet" href="notes.css" >
+
+    </head>
+    <body>
+        <div id="div1">
+        <form>
+            <textarea name="" id="input" cols="30" rows="10" placeholder="create toDo-Item" autofocus></textarea>
+        </form>
+        <button id="Add" > Add Item</button>
+        <button onclick="delAll()" id="del_all">Delete ALL</button>
+        </div>
+
+
+        <div id="div2">
+            <h1>To Do List</h1>
+            <output id="output"></output>
+            <section id="localSt"></section>
+        </div>
+
+        
+        
+
+        <script>
+
+            function delAll() {
+                localStorage.clear();
+                i=0;
+                keyZ=[]
+                retrieveDataFromLocSto();
+            }
+
+
+            // Function löscht individuelle Items
+            function delItem() {
+                screencontent=this.parentNode.textContent;
+                console.log("Inhalt------------"+screencontent);
+                for(i = 0; i < keyZ.length; i++) {
+                    index=keyZ[i];
+                    inLocStore_val=localStorage.getItem(index);
+                    if(inLocStore_val==screencontent){
+                        localStorage.removeItem(index);
+                        console.log("delItem-----"+index+"____"+inLocStore_val);
+                        critIndex=index;
+                    }
+                } 
+                locStToArray()
+                retrieveDataFromLocSto(); 
+            }
+
+
+
+            //Diese Funktion nimmt die Values aus dem localStorage und schreibt sie in den Webbrowser
+            function retrieveDataFromLocSto() {
+                document.querySelector("#output").innerHTML=keyZ;
+                
+                for(ii = 0; ii < keyZ.length; ii++){
+                    k=keyZ[ii];
+                    var textfield = localStorage.getItem(k);
+
+                    var new_p = document.createElement("p");                
+                    new_p.id ="del_ID"+String(k)
+                    new_p.className ="items";
+                    
+                    var NEW_DEL = document.createElement("input");
+                    NEW_DEL.id = new_p.id + "INPUT";
+                    NEW_DEL.type = "submit";
+                    NEW_DEL.value = "Delete";
+                    NEW_DEL.className ="del";
+                    NEW_DEL.addEventListener("click",delItem)
+                    
+                    var new_content = document.createTextNode(textfield);
+
+                    new_p.appendChild(new_content);
+                    new_p.appendChild(NEW_DEL);
+                    document.querySelector("#output").appendChild(new_p);
+
+                    
+                }
+                
+            }
+            
+            /////Eingabefeld und button "Add"
+            function addItem(){
+                
+                i=i+1
+                localStorage.setItem(i,textfield.value);
+                textfield.value=""; //Feld wieder leeren
+                textfield.focus();
+                locStToArray()
+                retrieveDataFromLocSto()
+                
+                console.log(i,keyZ)
+                console.log(localStorage)
+                
+                
+            }
+
+            //Speichert die Keys im localStorage in einer Liste
+            function locStToArray(){
+                keyZ=[];
+                for(i = 0 ; i < localStorage.length ; i++) {
+                    keyZ[i]=Number(localStorage.key(i));
+                    console.log(keyZ,i);     
+                }
+            }
+
+
+            //runtime code
+            i=0;
+            locStToArray()
+            var pushAdd = document.querySelector('#Add');
+            var textfield = document.querySelector("#input");
+            pushAdd.addEventListener("click",addItem);
+            textfield.addEventListener("keyup",function(e) {
+                if (e.keyCode === 13) {
+                    document.getElementById("Add").click();
+                }
+            });
+
+            retrieveDataFromLocSto();
+            
+
+        </script>  
+    </body>
+</html>
