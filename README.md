@@ -1,4 +1,4 @@
-# JavaScript
+# MyJavaScriptStarters
 
 
 ## Content
